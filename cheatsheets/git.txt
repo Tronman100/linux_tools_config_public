@@ -1,0 +1,217 @@
+Clone git repository (default master)
+
+git clone ssh://[repo]
+Clone git repository (from a specific branch)
+
+git clone -b <branch> ssh://[repo]
+
+
+Finding changed files
+
+git status            # includes new files
+git diff --name-only  # only existing files
+git diff --cached     # only staged changes
+Use vim for diff (if enabled, see below)
+
+git vdiff
+Revert a file/change
+
+git checkout -- path/to/file
+git checkout -- .              # Use with caution, discards all changes
+git checkout -- *
+
+
+List Branches
+
+git branch
+
+
+Create a new Branch
+
+git checkout -b [branch_name]
+
+
+Push new branch upstream
+
+git push --set-upstream origin [branch_name]
+
+
+Rename a Branch
+
+# Rename the local branch to the new name
+git branch -m [old_branch] [new_branch]
+ 
+# Delete the old branch on remote - where <remote> is, for example, origin
+git push origin --delete [old_branch]
+ 
+# Push the new branch to remote
+git push origin [new_branch]
+ 
+# Reset the upstream branch for the new_name local branch
+git push <remote> -u [new_branch]
+
+
+Stage files or add new files
+
+git add [file]
+
+
+Stage or add all new files (caution)
+
+git add .
+
+
+Unstage a file
+
+git reset -- [file]
+
+
+Remove a file from the repository
+
+This can be done even after the file has been removed from the file system (though auto-complete won't work)
+
+Otherwise, the file will be removed as a result of this command
+
+git rm path/to/file
+
+
+Git commit
+
+git commit
+
+
+Amend Last Commit (local commit)
+
+git --amend commit
+
+
+Push outstanding commits for all branches (by default)
+
+git push origin
+
+
+Configure what branches you would like push to operate on
+
+See https://makandracards.com/makandra/8039-git-how-to-configure-git-to-push-only-your-current-branch
+
+git config --global push.default nothing   # do not push anything.
+git config --global push.default matching  # push all matching branches. All branches having the same name in both ends are considered to be matching. This is the default.
+git config --global push.default upstream  # push the current branch to its upstream branch.
+git config --global push.default tracking  # deprecated synonym for upstream.
+git config --global push.default current   # push the current branch to a branch of the same name.
+
+
+Pull specific branch (and merge changes into current branch)
+
+git pull origin [branch_name]
+
+
+Pull specific branch (without merging changes into current branch)
+
+git fetch origin [branch_name]
+
+
+Update to a specific commit (needs to already be pulled)
+
+git checkout [sha1]
+
+
+Cherry-pick changes for commit
+
+TODO: Figure out how to automatically cherry-pick all changes on a given branch
+
+git cherry-pick [commit1] [commit2]
+
+
+Switch to branch
+
+git checkout [branch_name]
+
+
+Create an annotated tag
+
+git tag -a v0.1.0 -m 'New Version'
+
+
+Push a tag
+
+git push origin v0.1.0
+
+
+Switch to "tag"?
+
+git checkout tags/0.9
+
+
+Checkout a tag for changes (really makes changes on branch)
+
+git checkout -b production-v0.1.1 v0.1.0
+
+
+View commit history
+
+git log
+
+
+See unpushed commits
+
+git log --branches --not --remotes
+
+
+See files from recent commit
+
+git log -p -1 --name-only
+
+
+See files for specific commit
+
+git show --name-only [hash]
+
+
+Show files for specific commit
+
+git show --name-only [hash]
+
+
+View an arbitrary commit
+
+git diff [hash]^!
+
+
+View a specific file in commit
+
+git diff [hash]^! [file]
+
+
+Merge branch (no conflicts)
+
+git checkout master       # Branch to merge to
+git merge feature-branch  # Branch to merge from
+
+
+Abort a merge
+
+git merge --abort
+
+
+Git rebase a feature branch
+
+TODO
+Set difftool vim:
+
+git config --global diff.tool vimdiff
+git config --global difftool.prompt false
+git config --global alias.vdiff difftool
+Enable colourised output:
+
+git config --global color.ui true
+
+
+To make your current directory a Git repository, we simply run init
+
+git init
+
+
+To make a new directory that is a Git repository, we just specify a directory
+
+git init newRepo
