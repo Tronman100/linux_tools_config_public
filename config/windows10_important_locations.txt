@@ -1,0 +1,7 @@
+Install Startup:
+
+shell:startup
+
+Install Shortcuts:
+
+C:\Users\Jay\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\_hotkeys
